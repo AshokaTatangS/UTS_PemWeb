@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Daftar Penggemar</title>
+    <link rel="stylesheet" href="style3.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <header>
+        <h1>Daftar Penggemar Idola</h1>
+    </header>
+    <aside>
+        <nav>
+            <input type="checkbox" id="check">
+            <label for="check" class="checkbtn">
+                <i class="fas fa-bars"></i>
+            </label>
+            <ul>
+                <li><a href="index.html">Halaman Utama</a></li>
+                <li><a href="form.html">Halaman Formulir</a></li>
+                <li><a href="table.html">Halaman Tabel</a></li>
+            </ul>
+        </nav>
+    </aside>
+    <main>
+        <div class="table-container">
+            <table>
+                <thead>
+                    <tr>
+                        <th>No</th>
+                        <th>Nama</th>
+                        <th>Tanggal Lahir</th>
+                        <th>Jenis Kelamin</th>
+                        <th>Idola Favorit</th>
+                        <th>Email</th>
+                    </tr>
+                </thead>
+                <tbody id="fanTableBody">
+                    <!-- Baris penggemar akan ditambahkan di sini -->
+                </tbody>
+            </table>
+        </div>
+
+        <script>
+            function displayFanData() {
+                let fanList = JSON.parse(localStorage.getItem('fans')) || [];
+                let tableBody = document.getElementById('fanTableBody');
+
+                // Mengosongkan tabel sebelum menambahkan data baru
+                tableBody.innerHTML = '';
+
+                // Menambahkan setiap penggemar ke dalam tabel
+                fanList.forEach((fan, index) => {
+                    let row = document.createElement('tr');
+
+                    row.innerHTML = `
+                        <td>${index + 1}</td>
+                        <td>${fan.name}</td>
+                        <td>${fan.dob}</td>
+                        <td>${fan.gender}</td>
+                        <td>${fan.favorite}</td>
+                        <td>${fan.email}</td>
+                    `;
+
+                    tableBody.appendChild(row);
+                });
+            }
+
+            window.onload = displayFanData;
+        </script>
+    </main>
+</body>
+</html>
