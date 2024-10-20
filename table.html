@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Daftar Penggemar</title>
-    <link rel="stylesheet" href="style3.css">
+    <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 <body>
@@ -38,30 +38,80 @@
                     </tr>
                 </thead>
                 <tbody id="fanTableBody">
-                    <!-- Baris penggemar akan ditambahkan di sini -->
                 </tbody>
             </table>
         </div>
 
         <script>
             function displayFanData() {
-                let fanList = JSON.parse(localStorage.getItem('fans')) || [];
+                let fanList = [
+                    { name: "Andi", dob: "1990-05-12", gender: "Laki-laki", favorite: "Tundra Esports", email: "andi@mail.com" },
+                    { name: "Budi", dob: "1991-08-23", gender: "Laki-laki", favorite: "OG Esports", email: "budi@mail.com" },
+                    { name: "Cici", dob: "1992-04-15", gender: "Perempuan", favorite: "Team Secret", email: "cici@mail.com" },
+                    { name: "Dani", dob: "1990-11-02", gender: "Laki-laki", favorite: "PSG.LGD", email: "dani@mail.com" },
+                    { name: "Eka", dob: "1993-06-20", gender: "Laki-laki", favorite: "Virtus.pro", email: "eka@mail.com" },
+                    { name: "Fani", dob: "1994-09-25", gender: "Perempuan", favorite: "Fnatic", email: "fani@mail.com" },
+                    { name: "Gilang", dob: "1995-02-12", gender: "Laki-laki", favorite: "Natus Vincere", email: "gilang@mail.com" },
+                    { name: "Hana", dob: "1996-12-19", gender: "Perempuan", favorite: "Alliance", email: "hana@mail.com" },
+                    { name: "Iwan", dob: "1997-03-30", gender: "Laki-laki", favorite: "Evil Geniuses", email: "iwan@mail.com" },
+                    { name: "Joko", dob: "1998-07-21", gender: "Laki-laki", favorite: "Team Liquid", email: "joko@mail.com" },
+                    { name: "Kiki", dob: "1999-10-14", gender: "Perempuan", favorite: "Nigma", email: "kiki@mail.com" },
+                    { name: "Lala", dob: "2000-01-05", gender: "Perempuan", favorite: "Vici Gaming", email: "lala@mail.com" },
+                    { name: "Mira", dob: "1991-02-09", gender: "Perempuan", favorite: "OG Esports", email: "mira@mail.com" },
+                    { name: "Nino", dob: "1992-03-10", gender: "Laki-laki", favorite: "PSG.LGD", email: "nino@mail.com" },
+                    { name: "Omar", dob: "1993-05-11", gender: "Laki-laki", favorite: "Team Secret", email: "omar@mail.com" },
+                    { name: "Putu", dob: "1994-07-12", gender: "Laki-laki", favorite: "Tundra Esports", email: "putu@mail.com" },
+                    { name: "Qori", dob: "1995-09-13", gender: "Perempuan", favorite: "Fnatic", email: "qori@mail.com" },
+                    { name: "Rani", dob: "1996-11-14", gender: "Perempuan", favorite: "Virtus.pro", email: "rani@mail.com" },
+                    { name: "Sinta", dob: "1997-01-15", gender: "Perempuan", favorite: "Alliance", email: "sinta@mail.com" },
+                    { name: "Tomi", dob: "1998-03-16", gender: "Laki-laki", favorite: "Nigma", email: "tomi@mail.com" },
+                    { name: "Uli", dob: "1999-05-17", gender: "Perempuan", favorite: "Team Liquid", email: "uli@mail.com" },
+                    { name: "Vita", dob: "2000-07-18", gender: "Perempuan", favorite: "Evil Geniuses", email: "vita@mail.com" },
+                    { name: "Wawan", dob: "1991-09-19", gender: "Laki-laki", favorite: "Natus Vincere", email: "wawan@mail.com" },
+                    { name: "Xena", dob: "1992-11-20", gender: "Perempuan", favorite: "Vici Gaming", email: "xena@mail.com" },
+                    { name: "Yogi", dob: "1993-01-21", gender: "Laki-laki", favorite: "PSG.LGD", email: "yogi@mail.com" },
+                    { name: "Zaki", dob: "1994-03-22", gender: "Laki-laki", favorite: "OG Esports", email: "zaki@mail.com" },
+                    { name: "Abi", dob: "1995-05-23", gender: "Laki-laki", favorite: "Fnatic", email: "abi@mail.com" },
+                    { name: "Bella", dob: "1996-07-24", gender: "Perempuan", favorite: "Alliance", email: "bella@mail.com" },
+                    { name: "Candra", dob: "1997-09-25", gender: "Laki-laki", favorite: "Virtus.pro", email: "candra@mail.com" },
+                    { name: "Dewi", dob: "1998-11-26", gender: "Perempuan", favorite: "Team Liquid", email: "dewi@mail.com" },
+                    { name: "Endang", dob: "1999-01-27", gender: "Perempuan", favorite: "Evil Geniuses", email: "endang@mail.com" },
+                    { name: "Feri", dob: "2000-03-28", gender: "Laki-laki", favorite: "Tundra Esports", email: "feri@mail.com" },
+                    { name: "Gita", dob: "1991-05-29", gender: "Perempuan", favorite: "Nigma", email: "gita@mail.com" },
+                    { name: "Hendri", dob: "1992-07-30", gender: "Laki-laki", favorite: "Natus Vincere", email: "hendri@mail.com" },
+                    { name: "Intan", dob: "1993-09-01", gender: "Perempuan", favorite: "PSG.LGD", email: "intan@mail.com" },
+                    { name: "Joni", dob: "1994-11-02", gender: "Laki-laki", favorite: "Team Secret", email: "joni@mail.com" },
+                    { name: "Kania", dob: "1995-01-03", gender: "Perempuan", favorite: "OG Esports", email: "kania@mail.com" },
+                    { name: "Lutfi", dob: "1996-03-04", gender: "Laki-laki", favorite: "Tundra Esports", email: "lutfi@mail.com" },
+                    { name: "Maria", dob: "1997-05-05", gender: "Perempuan", favorite: "Fnatic", email: "maria@mail.com" },
+                    { name: "Nia", dob: "1998-07-06", gender: "Perempuan", favorite: "Virtus.pro", email: "nia@mail.com" },
+                    { name: "Omar", dob: "1999-09-07", gender: "Laki-laki", favorite: "Nigma", email: "omar@mail.com" },
+                    { name: "Peni", dob: "2000-11-08", gender: "Perempuan", favorite: "Team Liquid", email: "peni@mail.com" },
+                    { name: "Qori", dob: "1991-01-09", gender: "Laki-laki", favorite: "Evil Geniuses", email: "qori@mail.com" },
+                    { name: "Rani", dob: "1992-03-10", gender: "Perempuan", favorite: "Alliance", email: "rani@mail.com" },
+                    { name: "Sari", dob: "1993-05-11", gender: "Perempuan", favorite: "PSG.LGD", email: "sari@mail.com" },
+                    { name: "Lutfi", dob: "1996-03-04", gender: "Laki-laki", favorite: "Tundra Esports", email: "lutfi@mail.com" },
+                    { name: "Bella", dob: "1996-07-24", gender: "Perempuan", favorite: "Alliance", email: "bella@mail.com" },
+                    { name: "Maria", dob: "1997-05-05", gender: "Perempuan", favorite: "Fnatic", email: "maria@mail.com" },
+                    { name: "Omar", dob: "1999-09-07", gender: "Laki-laki", favorite: "Nigma", email: "omar@mail.com" },
+                    { name: "Yogi", dob: "1993-01-21", gender: "Laki-laki", favorite: "PSG.LGD", email: "yogi@mail.com" },
+                ];
+
                 let tableBody = document.getElementById('fanTableBody');
 
-                // Mengosongkan tabel sebelum menambahkan data baru
                 tableBody.innerHTML = '';
 
-                // Menambahkan setiap penggemar ke dalam tabel
                 fanList.forEach((fan, index) => {
                     let row = document.createElement('tr');
+                    row.classList.add('h-card'); // Tambahkan kelas h-card untuk mengindikasikan microformat
 
                     row.innerHTML = `
                         <td>${index + 1}</td>
-                        <td>${fan.name}</td>
-                        <td>${fan.dob}</td>
-                        <td>${fan.gender}</td>
-                        <td>${fan.favorite}</td>
-                        <td>${fan.email}</td>
+                        <td class="p-name">${fan.name}</td>
+                        <td class="p-birthdate">${fan.dob}</td>
+                        <td class="p-gender">${fan.gender}</td>
+                        <td class="p-favorite">${fan.favorite}</td>
+                        <td class="p-email"><a class="u-email" href="mailto:${fan.email}">${fan.email}</a></td>
                     `;
 
                     tableBody.appendChild(row);
@@ -72,4 +122,5 @@
         </script>
     </main>
 </body>
+<footer>UTS-Pemrograman Web Ashoka Tatang Solihin-122140051</footer>
 </html>
