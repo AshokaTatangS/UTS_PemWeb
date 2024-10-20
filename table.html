@@ -44,8 +44,8 @@
 
         <script>
             function displayFanData() {
-                let fanList = [
-                    { name: "Andi", dob: "1990-05-12", gender: "Laki-laki", favorite: "Tundra Esports", email: "andi@mail.com" },
+                let dummyFanList = [
+                { name: "Andi", dob: "1990-05-12", gender: "Laki-laki", favorite: "Tundra Esports", email: "andi@mail.com" },
                     { name: "Budi", dob: "1991-08-23", gender: "Laki-laki", favorite: "OG Esports", email: "budi@mail.com" },
                     { name: "Cici", dob: "1992-04-15", gender: "Perempuan", favorite: "Team Secret", email: "cici@mail.com" },
                     { name: "Dani", dob: "1990-11-02", gender: "Laki-laki", favorite: "PSG.LGD", email: "dani@mail.com" },
@@ -97,23 +97,33 @@
                     { name: "Yogi", dob: "1993-01-21", gender: "Laki-laki", favorite: "PSG.LGD", email: "yogi@mail.com" },
                 ];
 
+                let userFanList = JSON.parse(localStorage.getItem('fans')) || [];
                 let tableBody = document.getElementById('fanTableBody');
-
                 tableBody.innerHTML = '';
 
-                fanList.forEach((fan, index) => {
+                dummyFanList.forEach((fan, index) => {
                     let row = document.createElement('tr');
-                    row.classList.add('h-card'); // Tambahkan kelas h-card untuk mengindikasikan microformat
-
                     row.innerHTML = `
                         <td>${index + 1}</td>
-                        <td class="p-name">${fan.name}</td>
-                        <td class="p-birthdate">${fan.dob}</td>
-                        <td class="p-gender">${fan.gender}</td>
-                        <td class="p-favorite">${fan.favorite}</td>
-                        <td class="p-email"><a class="u-email" href="mailto:${fan.email}">${fan.email}</a></td>
+                        <td>${fan.name}</td>
+                        <td>${fan.dob}</td>
+                        <td>${fan.gender}</td>
+                        <td>${fan.favorite}</td>
+                        <td><a href="mailto:${fan.email}">${fan.email}</a></td>
                     `;
+                    tableBody.appendChild(row);
+                });
 
+                userFanList.forEach((fan, index) => {
+                    let row = document.createElement('tr');
+                    row.innerHTML = `
+                        <td>${dummyFanList.length + index + 1}</td>
+                        <td>${fan.name}</td>
+                        <td>${fan.dob}</td>
+                        <td>${fan.gender}</td>
+                        <td>${fan.favorite}</td>
+                        <td><a href="mailto:${fan.email}">${fan.email}</a></td>
+                    `;
                     tableBody.appendChild(row);
                 });
             }
@@ -121,6 +131,6 @@
             window.onload = displayFanData;
         </script>
     </main>
+    <footer>UTS-Pemrograman Web Ashoka Tatang Solihin-122140051</footer>
 </body>
-<footer>UTS-Pemrograman Web Ashoka Tatang Solihin-122140051</footer>
 </html>
